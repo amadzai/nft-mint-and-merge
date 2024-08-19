@@ -3,17 +3,17 @@ import { expect } from 'chai';
 
 const { ethers } = hardhat;
 
-describe('WarriorNFT', function () {
-  let Warrior, warrior, owner, addr1, addr2;
+describe('WarriorsNFT', function () {
+  let Warriors, warriors, owner, addr1, addr2;
 
   beforeEach(async function () {
     // Get the contract factory and signers (test accounts)
-    Warrior = await ethers.getContractFactory('Warrior');
+    Warriors = await ethers.getContractFactory('Warriors');
     [owner, addr1, addr2] = await ethers.getSigners();
 
     // Deploy the contract with the owner's address
-    warrior = await Warrior.deploy(owner.address);
-    await warrior.deployed();
+    warriors = await Warriors.deploy(owner.address);
+    await warriors.deployed();
   });
 
   it('Should mint and transfer an NFT after paying', async function () {
@@ -23,21 +23,21 @@ describe('WarriorNFT', function () {
     const metadataURI = 'some_unique_content';
 
     // Check initial balance (BigNumber comparison)
-    let balance = await warrior.balanceOf(recipient);
+    let balance = await warriors.balanceOf(recipient);
     expect(balance.eq(0)).to.be.true;  // Use BigNumber comparison
 
     // Mint the NFT using payToMint function (send 0.05 Ether)
-    const mintTx = await warrior.connect(addr1).payToMint(recipient, metadataURI, {
+    const mintTx = await warriors.connect(addr1).payToMint(recipient, metadataURI, {
       value: ethers.utils.parseEther('0.05'),
     });
     await mintTx.wait(); // Wait for the transaction to complete
 
     // Check balance after minting
-    balance = await warrior.balanceOf(recipient);
+    balance = await warriors.balanceOf(recipient);
     expect(balance.eq(1)).to.be.true;  // Use BigNumber comparison
 
     // Verify token URI is correct
-    const tokenURI = await warrior.tokenURI(0);
+    const tokenURI = await warriors.tokenURI(0);
     expect(tokenURI).to.equal(`ipfs://${metadataURI}`);
   });
 });
