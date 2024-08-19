@@ -1,7 +1,7 @@
 {
   "name": "Empress",
   "description": "A god-empress worshipped by all Warriors, words cannot describe her aura",
-  "image": "ipfs://<IPFS_HASH_FOR_IMAGE_empress.png>",
+  "image": "ipfs://QmXSBiB3Ro4r6BbsxEpnHAdCkBwSvEfLTGM2fv1gfNLfAT",
   "attributes": [
     {
       "trait_type": "Rarity",

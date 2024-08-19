@@ -1,7 +1,7 @@
 {
   "name": "Guan Yu",
   "description": "A master of the halberd, celebrated for his formidable technique and approach to combat.",
-  "image": "ipfs://<IPFS_HASH_FOR_IMAGE_guan_yu.png>",
+  "image": "ipfs://QmZWXsA7wtnVntNnZ3YMiA2TdnMeE4zgUtdaFHXyqvpY2z",
   "attributes": [
     {
       "trait_type": "Rarity",

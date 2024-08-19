@@ -1,7 +1,7 @@
 {
   "name": "Phlontar",
   "description": "A valiant soldier of the Roman legions, distinguished by unwavering courage and stamina in battle.",
-  "image": "ipfs://<IPFS_HASH_FOR_IMAGE_phlontar.png>",
+  "image": "ipfs://QmeBov1WR1b9KzjqzAjgJ1cDg8Pj2WScUJrmFE4JdZjspr",
   "attributes": [
     {
       "trait_type": "Rarity",

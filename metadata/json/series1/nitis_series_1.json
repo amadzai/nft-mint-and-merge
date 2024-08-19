@@ -1,7 +1,7 @@
 {
   "name": "Nitis",
   "description": "A fearless fighter from the Apache, celebrated for their fierce combat skills and unyielding spirit",
-  "image": "ipfs://<IPFS_HASH_FOR_IMAGE_nitis.png>",
+  "image": "ipfs://QmVCvx2tu9RJVVmMfwPvM1Dn1UkaRh2tjQDLGmKqPwxycT",
   "attributes": [
     {
       "trait_type": "Rarity",

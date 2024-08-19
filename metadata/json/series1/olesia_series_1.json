@@ -1,7 +1,7 @@
 {
   "name": "Olesia",
   "description": "A fearless warrior from ancient Sparta, trained for battle from birth.",
-  "image": "ipfs://<IPFS_HASH_FOR_IMAGE_olesia.png>",
+  "image": "ipfs://QmRBjV7HbpTd7ERASSearUx1Prg3mKtfMFQHwVJnSS77JX",
   "attributes": [
     {
       "trait_type": "Rarity",

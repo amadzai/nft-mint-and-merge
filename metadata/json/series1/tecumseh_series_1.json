@@ -1,7 +1,7 @@
 {
   "name": "Tecumseh",
   "description": "A revered Shawnee chieftain, known for his visionary leadership and fierce determination in uniting his people.",
-  "image": "ipfs://<IPFS_HASH_FOR_IMAGE_tecumseh.png>",
+  "image": "ipfs://QmR5mWsuEaFSrHSpBkR49W7JHrM3QK2pb5LDtGJbUmJDmo",
   "attributes": [
     {
       "trait_type": "Rarity",
