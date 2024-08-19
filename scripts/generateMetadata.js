@@ -6,7 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Define the base directory for the metadata files
-const metadata_base_dir = path.join(__dirname, './metadata/json');
+const metadata_base_dir = path.join(__dirname, '../metadata/json');
 
 // Function to determine the next series folder
 function getNextSeriesFolder(base_dir) {
