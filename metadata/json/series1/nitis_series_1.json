@@ -9,11 +9,11 @@
     },
     {
       "trait_type": "Attack",
-      "value": 11
+      "value": 16
     },
     {
       "trait_type": "Defense",
-      "value": 22
+      "value": 40
     }
   ]
 }

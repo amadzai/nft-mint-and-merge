@@ -11,14 +11,15 @@ function getNextSeriesFolder(base_dir) {
         const series_folder = `series${series_num}`;
         const series_path = path.join(base_dir, series_folder);
         if (!fs.existsSync(series_path)) {
-            return series_path;
+            return { series_folder, series_num };
         }
         series_num++;
     }
 }
 
-// Create the next available series folder
-const series_dir = getNextSeriesFolder(metadata_base_dir);
+// Create the next available series folder and get its number
+const { series_folder, series_num } = getNextSeriesFolder(metadata_base_dir);
+const series_dir = path.join(metadata_base_dir, series_folder);
 fs.mkdirSync(series_dir, { recursive: true });
 
 // List of warriors with their image names, rarities, and descriptions
@@ -181,8 +182,8 @@ warriors.forEach(warrior => {
         ]
     };
 
-    // Save metadata as JSON files in the series directory, replace spaces with underscores
-    const fileName = `${series_dir}/${warrior.name.toLowerCase().replace(/\s+/g, '_')}.json`;
+    // Save metadata as JSON files in the series directory, append series number to filename
+    const fileName = `${series_dir}/${warrior.name.toLowerCase().replace(/\s+/g, '_')}_series_${series_num}.json`;
     fs.writeFileSync(fileName, JSON.stringify(metadata, null, 2));
     console.log(`Generated metadata for ${warrior.name} -> ${fileName}`);
 });
