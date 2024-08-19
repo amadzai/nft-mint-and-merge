@@ -133,8 +133,38 @@ const warriors = [
     },
 ];
 
-// Function to generate a random number between 10 and 100 for attack and defense
-function getRandomStat(min = 10, max = 100) {
+// Function to generate a random stat based on rarity
+function getRandomStat(rarity, statType) {
+    let min, max;
+
+    // Define ranges for different rarities
+    switch (rarity) {
+        case 'Common':
+            min = 10;
+            max = 40;
+            break;
+        case 'Rare':
+            min = 41;
+            max = 60;
+            break;
+        case 'Epic':
+            min = 61;
+            max = 80;
+            break;
+        case 'Mythic':
+            min = 81;
+            max = 90;
+            break;
+        case 'Legendary':
+            min = 91;
+            max = 100;
+            break;
+        default:
+            min = 10;
+            max = 100;  // Default case if no rarity matches
+    }
+
+    // Generate random number based on the range
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
@@ -146,8 +176,8 @@ warriors.forEach(warrior => {
         "image": `ipfs://<IPFS_HASH_FOR_IMAGE_${warrior.image}>`,
         "attributes": [
             { "trait_type": "Rarity", "value": warrior.rarity },
-            { "trait_type": "Attack", "value": getRandomStat() },
-            { "trait_type": "Defense", "value": getRandomStat() }
+            { "trait_type": "Attack", "value": getRandomStat(warrior.rarity, 'Attack') },
+            { "trait_type": "Defense", "value": getRandomStat(warrior.rarity, 'Defense') }
         ]
     };
 
