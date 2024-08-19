@@ -1,0 +1,19 @@
+{
+  "name": "Yoruichi",
+  "description": "An esteemed archer from ancient Japan, known for unmatched accuracy and profound wisdom in the art of the bow.",
+  "image": "ipfs://<IPFS_HASH_FOR_IMAGE_yoruichi.png>",
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "Rare"
+    },
+    {
+      "trait_type": "Attack",
+      "value": 41
+    },
+    {
+      "trait_type": "Defense",
+      "value": 55
+    }
+  ]
+}

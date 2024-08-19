@@ -1,0 +1,19 @@
+{
+  "name": "Emperor",
+  "description": "A god-emperor worshipped by all Warriors, words cannot describe his power.",
+  "image": "ipfs://<IPFS_HASH_FOR_IMAGE_emperor.png>",
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "Legendary"
+    },
+    {
+      "trait_type": "Attack",
+      "value": 95
+    },
+    {
+      "trait_type": "Defense",
+      "value": 91
+    }
+  ]
+}

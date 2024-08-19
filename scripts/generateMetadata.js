@@ -134,7 +134,7 @@ const warriors = [
 ];
 
 // Function to generate a random stat based on rarity
-function getRandomStat(rarity, statType) {
+function getRandomStat(rarity) {
     let min, max;
 
     // Define ranges for different rarities
@@ -176,8 +176,8 @@ warriors.forEach(warrior => {
         "image": `ipfs://<IPFS_HASH_FOR_IMAGE_${warrior.image}>`,
         "attributes": [
             { "trait_type": "Rarity", "value": warrior.rarity },
-            { "trait_type": "Attack", "value": getRandomStat(warrior.rarity, 'Attack') },
-            { "trait_type": "Defense", "value": getRandomStat(warrior.rarity, 'Defense') }
+            { "trait_type": "Attack", "value": getRandomStat(warrior.rarity) },
+            { "trait_type": "Defense", "value": getRandomStat(warrior.rarity) }
         ]
     };
 
