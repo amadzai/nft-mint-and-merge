@@ -1,7 +1,7 @@
 {
   "name": "Ajax",
   "description": "A heroic Greek warrior renowned for his immense strength and key role in epic battles.",
-  "image": "ipfs://<IPFS_HASH_FOR_IMAGE_ajax.png>",
+  "image": "ipfs://QmYJpjhArY1Wvo1mK7mLu7Q4T4gBfBH5gP1MXZAidQxZvW",
   "attributes": [
     {
       "trait_type": "Rarity",
