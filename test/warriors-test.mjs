@@ -40,4 +40,29 @@ describe('WarriorsNFT', function () {
     const tokenURI = await warriors.tokenURI(0);
     expect(tokenURI).to.equal(`ipfs://${metadataURI}`);
   });
+
+  it('Should correctly return ownership status of a content URI', async function () {
+    const recipient = addr1.address;
+
+    // First URI to mint
+    const metadataURI1 = 'some_unique_content1';
+
+    // Check that isContentOwned returns false before minting
+    let isOwned = await warriors.isContentOwned(metadataURI1);
+    expect(isOwned).to.be.false;
+
+    // Mint the NFT with the first URI
+    await warriors.connect(addr1).payToMint(recipient, metadataURI1, {
+      value: ethers.utils.parseEther('0.05'),
+    });
+
+    // After minting, isContentOwned should return true
+    isOwned = await warriors.isContentOwned(metadataURI1);
+    expect(isOwned).to.be.true;
+
+    // Check with a different URI that hasn't been minted
+    const metadataURI2 = 'some_nonexistent_content';
+    isOwned = await warriors.isContentOwned(metadataURI2);
+    expect(isOwned).to.be.false;
+  });
 });
