@@ -181,8 +181,8 @@ warriors.forEach(warrior => {
         ]
     };
 
-    // Save metadata as JSON files in the series directory
-    const fileName = `${series_dir}/${warrior.name.toLowerCase()}.json`;
+    // Save metadata as JSON files in the series directory, replace spaces with underscores
+    const fileName = `${series_dir}/${warrior.name.toLowerCase().replace(/\s+/g, '_')}.json`;
     fs.writeFileSync(fileName, JSON.stringify(metadata, null, 2));
     console.log(`Generated metadata for ${warrior.name} -> ${fileName}`);
 });
