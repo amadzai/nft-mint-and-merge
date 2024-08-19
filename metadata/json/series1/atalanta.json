@@ -1,0 +1,19 @@
+{
+  "name": "Atalanta",
+  "description": "A renowned Greek heroine celebrated for her unparalleled speed and skill in the hunt.",
+  "image": "ipfs://<IPFS_HASH_FOR_IMAGE_atalanta.png>",
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "Mythic"
+    },
+    {
+      "trait_type": "Attack",
+      "value": 71
+    },
+    {
+      "trait_type": "Defense",
+      "value": 79
+    }
+  ]
+}

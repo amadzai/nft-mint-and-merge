@@ -1,0 +1,19 @@
+{
+  "name": "Plutonus",
+  "description": "A distinguished Roman lieutenant, recognized for tactical acumen and leadership on the battlefield.",
+  "image": "ipfs://<IPFS_HASH_FOR_IMAGE_plutonus.png>",
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "Rare"
+    },
+    {
+      "trait_type": "Attack",
+      "value": 33
+    },
+    {
+      "trait_type": "Defense",
+      "value": 24
+    }
+  ]
+}

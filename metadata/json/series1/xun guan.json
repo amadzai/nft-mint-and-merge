@@ -1,0 +1,19 @@
+{
+  "name": "Xun Guan",
+  "description": "A strategic Chinese general celebrated for her tactical brilliance and leadership in warfare.",
+  "image": "ipfs://<IPFS_HASH_FOR_IMAGE_xun_guan.png>",
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "Mythic"
+    },
+    {
+      "trait_type": "Attack",
+      "value": 50
+    },
+    {
+      "trait_type": "Defense",
+      "value": 32
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "name": "Fu Hao",
+  "description": "A renowned general from ancient times, celebrated for exceptional strategic brilliance and martial skill.",
+  "image": "ipfs://<IPFS_HASH_FOR_IMAGE_fu_hao.png>",
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "Rare"
+    },
+    {
+      "trait_type": "Attack",
+      "value": 28
+    },
+    {
+      "trait_type": "Defense",
+      "value": 93
+    }
+  ]
+}
