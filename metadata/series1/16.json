@@ -1,7 +1,7 @@
 {
   "name": "Emperor",
   "description": "A god-emperor worshipped by all Warriors, words cannot describe his power.",
-  "image": "ipfs://QmXzViSQBBqEeowsFJfobVFWcTvfNit547kyGCwvaCzKCT",
+  "image": "16.png",
   "attributes": [
     {
       "trait_type": "Rarity",
@@ -9,11 +9,11 @@
     },
     {
       "trait_type": "Attack",
-      "value": 93
+      "value": 100
     },
     {
       "trait_type": "Defense",
-      "value": 96
+      "value": 94
     }
   ]
 }

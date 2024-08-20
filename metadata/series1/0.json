@@ -1,7 +1,7 @@
 {
   "name": "Bjornulfr",
   "description": "A Viking berserker, known for his fierce bravery and battle-worn armor.",
-  "image": "ipfs://QmanE2bSkG5DkWF6qeQE6Jbii5SHTbFcWJfhEPpL2T5A2k",
+  "image": "0.png",
   "attributes": [
     {
       "trait_type": "Rarity",
@@ -9,11 +9,11 @@
     },
     {
       "trait_type": "Attack",
-      "value": 19
+      "value": 31
     },
     {
       "trait_type": "Defense",
-      "value": 10
+      "value": 15
     }
   ]
 }

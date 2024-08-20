@@ -1,7 +1,7 @@
 {
   "name": "Nitis",
   "description": "A fearless fighter from the Apache, celebrated for their fierce combat skills and unyielding spirit",
-  "image": "ipfs://QmVCvx2tu9RJVVmMfwPvM1Dn1UkaRh2tjQDLGmKqPwxycT",
+  "image": "2.png",
   "attributes": [
     {
       "trait_type": "Rarity",
@@ -9,11 +9,11 @@
     },
     {
       "trait_type": "Attack",
-      "value": 16
+      "value": 13
     },
     {
       "trait_type": "Defense",
-      "value": 40
+      "value": 12
     }
   ]
 }

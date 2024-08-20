@@ -1,7 +1,7 @@
 {
   "name": "Olesia",
   "description": "A fearless warrior from ancient Sparta, trained for battle from birth.",
-  "image": "ipfs://QmRBjV7HbpTd7ERASSearUx1Prg3mKtfMFQHwVJnSS77JX",
+  "image": "9.png",
   "attributes": [
     {
       "trait_type": "Rarity",
@@ -9,11 +9,11 @@
     },
     {
       "trait_type": "Attack",
-      "value": 73
+      "value": 76
     },
     {
       "trait_type": "Defense",
-      "value": 65
+      "value": 67
     }
   ]
 }

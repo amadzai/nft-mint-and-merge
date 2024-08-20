@@ -1,7 +1,7 @@
 {
   "name": "Guan Yu",
   "description": "A master of the halberd, celebrated for his formidable technique and approach to combat.",
-  "image": "ipfs://QmZWXsA7wtnVntNnZ3YMiA2TdnMeE4zgUtdaFHXyqvpY2z",
+  "image": "8.png",
   "attributes": [
     {
       "trait_type": "Rarity",
@@ -9,11 +9,11 @@
     },
     {
       "trait_type": "Attack",
-      "value": 65
+      "value": 76
     },
     {
       "trait_type": "Defense",
-      "value": 66
+      "value": 61
     }
   ]
 }

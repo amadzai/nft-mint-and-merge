@@ -1,7 +1,7 @@
 {
   "name": "Romulus",
   "description": "A heroic figure of ancient Rome, renowned for his legendary deeds and valor in battle.",
-  "image": "ipfs://QmdjDxX2xixrLzJsBJrXeugPagvs3WrSvG72zUPutb5j4S",
+  "image": "11.png",
   "attributes": [
     {
       "trait_type": "Rarity",
@@ -9,11 +9,11 @@
     },
     {
       "trait_type": "Attack",
-      "value": 69
+      "value": 72
     },
     {
       "trait_type": "Defense",
-      "value": 78
+      "value": 80
     }
   ]
 }

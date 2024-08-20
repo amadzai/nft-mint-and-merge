@@ -1,7 +1,7 @@
 {
   "name": "Xun Guan",
   "description": "A strategic Chinese general celebrated for her tactical brilliance and leadership in warfare.",
-  "image": "ipfs://QmcykNyndnUf5RUvWqwEWwwxYKmP2cS3AUAHCXjhsc5jtb",
+  "image": "15.png",
   "attributes": [
     {
       "trait_type": "Rarity",
@@ -13,7 +13,7 @@
     },
     {
       "trait_type": "Defense",
-      "value": 83
+      "value": 85
     }
   ]
 }

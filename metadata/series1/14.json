@@ -1,7 +1,7 @@
 {
   "name": "Nagakado",
   "description": "A commanding general known for his prowess in wielding a mace and staff while expertly riding into battle.",
-  "image": "ipfs://QmaEYrwhAC57cSCvuGbYbsCGsMgHZKpbmF1NN7xsXZvQTG",
+  "image": "14.png",
   "attributes": [
     {
       "trait_type": "Rarity",
@@ -13,7 +13,7 @@
     },
     {
       "trait_type": "Defense",
-      "value": 83
+      "value": 89
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "name": "Pang E",
   "description": "A skilled horse rider and staff fighter, known for her exceptional agility and combat expertise.",
-  "image": "ipfs://QmPFikTvE9BfghWHMJmgQu49e4pRjnxkYEWurYvBjkftQk",
+  "image": "10.png",
   "attributes": [
     {
       "trait_type": "Rarity",
@@ -9,7 +9,7 @@
     },
     {
       "trait_type": "Attack",
-      "value": 73
+      "value": 72
     },
     {
       "trait_type": "Defense",

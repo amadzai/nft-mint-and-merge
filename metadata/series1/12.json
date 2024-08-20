@@ -1,7 +1,7 @@
 {
   "name": "Ajax",
   "description": "A heroic Greek warrior renowned for his immense strength and key role in epic battles.",
-  "image": "ipfs://QmYJpjhArY1Wvo1mK7mLu7Q4T4gBfBH5gP1MXZAidQxZvW",
+  "image": "12.png",
   "attributes": [
     {
       "trait_type": "Rarity",
@@ -9,11 +9,11 @@
     },
     {
       "trait_type": "Attack",
-      "value": 82
+      "value": 85
     },
     {
       "trait_type": "Defense",
-      "value": 87
+      "value": 89
     }
   ]
 }

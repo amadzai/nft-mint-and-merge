@@ -1,7 +1,7 @@
 {
   "name": "Li Xiu",
   "description": "A skilled tactician from the elite battalion, renowned for her strategic prowess and combat finesse.",
-  "image": "ipfs://QmPab3Lmdnief4D76Z8xNPyBcJTgLvAT5mgNcLc9uXGyUW",
+  "image": "1.png",
   "attributes": [
     {
       "trait_type": "Rarity",
@@ -9,11 +9,11 @@
     },
     {
       "trait_type": "Attack",
-      "value": 18
+      "value": 38
     },
     {
       "trait_type": "Defense",
-      "value": 16
+      "value": 30
     }
   ]
 }
