@@ -45,7 +45,7 @@ function Home() {
                 {/* Render all the minted NFTs */}
                 {nfts.map((tokenId) => (
                     <Col sm="4" key={tokenId}>
-                        <NFTImage tokenId={tokenId} getCount={getCount} />
+                        <NFTImage tokenId={tokenId} isMinting={false} getCount={getCount} />
                     </Col>
                 ))}
 
@@ -57,8 +57,6 @@ function Home() {
         </div>
     );
 }
-
-
 
 function NFTImage({ tokenId, getCount, isMinting }) {
     const contentId = 'QmeMmnTrU4Cx5mUHXb66esBhir4kmdBvrKQtqXxa9DzEcL';
@@ -100,17 +98,16 @@ function NFTImage({ tokenId, getCount, isMinting }) {
         <div>
             <img
                 src={isMinting || !isMinted ? summonImage : imageURI}
-                className="img-fluid"
+                className="img-fluid mt-4"
                 alt={`Token ${tokenId}`}
-                style={{ width: '100%', height: 'auto' }}
             />
             <h5>ID #{tokenId}</h5>
             {!isMinted || isMinting ? (
-                <Button onClick={mintToken} color="primary" style={{ display: 'block', margin: '10px auto' }}>
+                <Button onClick={mintToken} color="primary" className="d-block m-auto">
                     Mint
                 </Button>
             ) : (
-                <Button onClick={getURI} color="secondary" style={{ display: 'block', margin: '10px auto' }}>
+                <Button onClick={getURI} color="secondary" className="d-block m-auto">
                     Taken! Show URI
                 </Button>
             )}
