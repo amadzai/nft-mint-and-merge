@@ -12,15 +12,12 @@ import '../App.css'
 const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3'
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
-
-// get the end user
 const signer = provider.getSigner();
-
-// get the smart contract
 const contract = new ethers.Contract(contractAddress, Warriors.abi, signer);
 
 function Home() {
     const [totalMinted, setTotalMinted] = useState(0);
+    const MAX_TOKENS = 18; // Maximum number of tokens you can mint
 
     useEffect(() => {
         getCount();
@@ -49,10 +46,12 @@ function Home() {
                     </Col>
                 ))}
 
-                {/* Add an extra slot for minting a new NFT */}
-                <Col sm="4">
-                    <NFTImage tokenId={totalMinted} isMinting={true} getCount={getCount} />
-                </Col>
+                {/* Add an extra slot for minting a new NFT if total minted is less than MAX_TOKENS */}
+                {totalMinted < MAX_TOKENS && (
+                    <Col sm="4">
+                        <NFTImage tokenId={totalMinted} isMinting={true} getCount={getCount} />
+                    </Col>
+                )}
             </Row>
         </div>
     );
@@ -73,26 +72,20 @@ function NFTImage({ tokenId, getCount, isMinting }) {
         console.log(`Token ${tokenId} is minted:`, result);
         setIsMinted(result);
 
-        // Clear attributes if not minted
         if (!result) {
-            console.log(`Clearing attributes for token ${tokenId} (not minted)`);
             setAttributes(null);
         }
     }, [metadataURI, tokenId]);
 
     const fetchMetadata = useCallback(async () => {
         if (isMinted) {
-            console.log(`Fetching metadata for token ${tokenId}...`);
             try {
                 const response = await fetch(metadataJSONURI);
                 const metadata = await response.json();
-                console.log(`Fetched metadata for token ${tokenId}:`, metadata);
                 setAttributes(metadata.attributes);
             } catch (error) {
                 console.error(`Failed to fetch metadata for token ${tokenId}:`, error);
             }
-        } else {
-            console.log(`Token ${tokenId} is not minted, skipping metadata fetch.`);
         }
     }, [metadataJSONURI, isMinted, tokenId]);
 
@@ -117,7 +110,6 @@ function NFTImage({ tokenId, getCount, isMinting }) {
         });
 
         await result.wait();
-        console.log(`Token ${tokenId} minted successfully.`);
         getMintedStatus();
         getCount();
     };
@@ -136,7 +128,6 @@ function NFTImage({ tokenId, getCount, isMinting }) {
             />
             <h5>ID #{tokenId}</h5>
 
-            {/* Display the attributes only if the NFT is minted */}
             {getMintedStatus() && attributes && (
                 <div>
                     <p>Rarity: {attributes.find(attr => attr.trait_type === 'Rarity')?.value}</p>
@@ -151,14 +142,13 @@ function NFTImage({ tokenId, getCount, isMinting }) {
                 </Button>
             ) : (
                 <Button onClick={getURI} color="secondary" className="d-block m-auto">
-                    Taken! Show URI
+                    Owned! Show URI
                 </Button>
             )}
         </div>
     );
 }
 
-// Add PropTypes validation
 NFTImage.propTypes = {
     tokenId: PropTypes.number.isRequired,
     getCount: PropTypes.func.isRequired,
