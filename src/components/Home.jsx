@@ -60,16 +60,41 @@ function Home() {
 
 function NFTImage({ tokenId, getCount, isMinting }) {
     const contentId = 'QmeMmnTrU4Cx5mUHXb66esBhir4kmdBvrKQtqXxa9DzEcL';
-    const metadataURI = `${contentId}/${tokenId}.json`;
+    const metadataURI = `${contentId}/${tokenId}.json`; // for minting
+    const metadataJSONURI = `https://gateway.pinata.cloud/ipfs/${contentId}/${tokenId}.json`; // for fetching metadata
     const imageURI = `https://gateway.pinata.cloud/ipfs/${contentId}/${tokenId}.png`;
 
     const [isMinted, setIsMinted] = useState(false);
+    const [attributes, setAttributes] = useState(null);
 
     const getMintedStatus = useCallback(async () => {
+        console.log(`Checking if token ${tokenId} is minted...`);
         const result = await contract.isContentOwned(metadataURI);
-        console.log(result);
+        console.log(`Token ${tokenId} is minted:`, result);
         setIsMinted(result);
-    }, [metadataURI]);
+
+        // Clear attributes if not minted
+        if (!result) {
+            console.log(`Clearing attributes for token ${tokenId} (not minted)`);
+            setAttributes(null);
+        }
+    }, [metadataURI, tokenId]);
+
+    const fetchMetadata = useCallback(async () => {
+        if (isMinted) {
+            console.log(`Fetching metadata for token ${tokenId}...`);
+            try {
+                const response = await fetch(metadataJSONURI);
+                const metadata = await response.json();
+                console.log(`Fetched metadata for token ${tokenId}:`, metadata);
+                setAttributes(metadata.attributes);
+            } catch (error) {
+                console.error(`Failed to fetch metadata for token ${tokenId}:`, error);
+            }
+        } else {
+            console.log(`Token ${tokenId} is not minted, skipping metadata fetch.`);
+        }
+    }, [metadataJSONURI, isMinted, tokenId]);
 
     useEffect(() => {
         if (!isMinting) {
@@ -77,14 +102,22 @@ function NFTImage({ tokenId, getCount, isMinting }) {
         }
     }, [getMintedStatus, isMinting]);
 
+    useEffect(() => {
+        if (isMinted) {
+            fetchMetadata();
+        }
+    }, [fetchMetadata, isMinted]);
+
     const mintToken = async () => {
         const connection = contract.connect(signer);
         const addr = connection.address;
+        console.log(`Minting token ${tokenId}...`);
         const result = await contract.payToMint(addr, metadataURI, {
             value: ethers.utils.parseEther('0.05'),
         });
 
         await result.wait();
+        console.log(`Token ${tokenId} minted successfully.`);
         getMintedStatus();
         getCount();
     };
@@ -102,6 +135,16 @@ function NFTImage({ tokenId, getCount, isMinting }) {
                 alt={`Token ${tokenId}`}
             />
             <h5>ID #{tokenId}</h5>
+
+            {/* Display the attributes only if the NFT is minted */}
+            {getMintedStatus() && attributes && (
+                <div>
+                    <p>Rarity: {attributes.find(attr => attr.trait_type === 'Rarity')?.value}</p>
+                    <p>Attack: {attributes.find(attr => attr.trait_type === 'Attack')?.value}</p>
+                    <p>Defense: {attributes.find(attr => attr.trait_type === 'Defense')?.value}</p>
+                </div>
+            )}
+
             {!isMinted || isMinting ? (
                 <Button onClick={mintToken} color="primary" className="d-block m-auto">
                     Mint
