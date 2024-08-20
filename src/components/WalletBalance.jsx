@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ethers } from 'ethers';
+import { Button } from 'reactstrap';
 
 function WalletBalance() {
 
@@ -15,7 +16,7 @@ function WalletBalance() {
     return (
       <div>
           <h5>Your Balance: {balance}</h5>
-          <button onClick={() => getBalance()}>Show My Balance</button>
+          <Button onClick={() => getBalance()} color="danger">Show My Balance</Button>
       </div>
     );
   };
