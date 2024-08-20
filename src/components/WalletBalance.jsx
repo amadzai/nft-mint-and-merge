@@ -14,9 +14,9 @@ function WalletBalance() {
     };
   
     return (
-      <div>
+      <div className='mb-3'>
           <h5>Your Balance: {balance}</h5>
-          <Button onClick={() => getBalance()} color="danger">Show My Balance</Button>
+          <Button onClick={() => getBalance()} color="success">Show My Balance</Button>
       </div>
     );
   };
