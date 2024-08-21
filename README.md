@@ -61,8 +61,7 @@ The project is built using React, Solidity, and Hardhat for smart contract devel
     ```
     Replace the const contractAddress with your contractAddress
 
-8. **Configure MetaMask**:
-    <br>
+8. **Configure MetaMask**:  
     Add the local Hardhat network to MetaMask (usually running on http://localhost:8545) and import one of the accounts from the Hardhat node. You can use the private keys provided by Hardhat in the terminal.
 
 9. **Start the front-end**:
@@ -72,7 +71,6 @@ The project is built using React, Solidity, and Hardhat for smart contract devel
     Click to go to the Local URL
 
 10. **Clear MetaMask activity data**:  
-    <br>
     Not required the first time if new account. After the first time, when network 
     is restarted, go to MetaMask -> Settings -> Advanced -> Clear activity tab data to prevent nonce error.
 
