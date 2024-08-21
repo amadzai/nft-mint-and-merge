@@ -12,3 +12,10 @@ The project is built using React, Solidity, and Hardhat for smart contract devel
 - [Future Improvements](#future-improvements-building_construction)
 - [Process](#process-bulb)
 - [FAQ](#faq-question)
+
+## Features :star:
+- **Minting NFTs**: Users can mint NFTs using a gacha system to determine the rarity and stats of the minted NFT.
+- **Merging NFTs**: Two NFTs of the same rarity level can be merged/burned to mint a higher-rarity NFT.
+- **Metadata Generation for NFT Series**:  Generate metadata for various NFT series to get new stats for the same NFT characters.
+
+## Installation :hammer_and_wrench:
