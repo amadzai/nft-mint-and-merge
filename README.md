@@ -144,9 +144,30 @@ If all NFTs in that higher rarity has already been minted, the upgrade will jump
   - Deploy the contracts on a testnet.
   - Add styling and additional pages to the front-end.
   - Implement the entire back-end logic.
-- I was able to barely reach the the Add styling to the front-end stage, without adding any additional pages in the time given. 
+- I was able to barely reach the the Add styling to the front-end stage, without adding any additional pages in the time given and with very simple styling. 
 
-This included learning the necessary dependencies and setup (thanks Fireship), the Solidity syntax, and how NFTs are generated overall. As many of the beginner guides were from a few years back, it required a lot of debugging, researching, and ChatGPT (which also caused more bugs).
+2. Tool Selection:
+- As I was following Fireship's guide at the very start, which helped with getting the smart contract up-and-running, as well as creating a basic React front-end, I decided to stick with the same tools and technology from the guide as it would reduce further complexity of converting it to a different selection. Here are the tools and technologies:
+  - React 
+  - Bootstrap (Added Reactstrap later on)
+  - Hardhat
+  - OpenZeppelin (Adjusted the boilerplate later on)
+  - Alchemy (For testnet deployment)
+
+3. Challenges and Time Management:
+- Initially, I underestimated the time required to implement features as I had a clear plan. When I began to work on successfully minting the NFT, a myriad of bugs and errors were thrown.
+- A lot of time was needed to learn the necessary dependencies and setup (thanks Fireship), the Solidity syntax, and how NFTs are generated overall. As many of the beginner guides were from a few years back, it required a lot of debugging, researching, and ChatGPT (which also caused more bugs).
+- The gacha and merging logic took most of the time (2 days), with every iteration creating new errors somewhere else. I decided not to jump to back-end when faced with failures in the gacha and merging logic as I would end up with more questions, and lose my train of thought. The commitment to solving gacha and merging logic ended up being my final successful implementation in the project within the given time frame. 
+- I decided that completely implementing the Smart Contract Development with some Front-End Development would yield the most obvious results, and would be able to at least attain the title and key requirements of the project.
+
+4. Key Takeaways:
+- If given more time, I would definitely take a different approach in learning the tools and technology. Instead of following a deprecated guide, I would have slowly read through official documentations, and work on mini-projects to make sure I actually understand every line of code, and the flow of it. However, this would not be a good approach to a time-restricted project, especially with a lack of experience.
+- Regardless of the time-constraint, this project provided hands-on experience with developing and deploying an ERC721 smart contract, where I gained a ton of insight on how minting, merging, and burning tokens work, which is something fundamental to building NFT-based dApps, and even Web3 as a whole.
+- Working on the gacha mechanics made me further understand the consequences of randomizing things, and how important it is to understand what the effects are, for both the front-end and the back-end, as without proper implementation, things get wonky... 
+- Another small takeaway is realizing that most randomizations are handled off-chain, as randomizing on-chain is also difficult. When uploading my images and metadat to the IPFS via Pinata, it was the first time I noticed that the "user-minted" may have already existed, and the image itself may not be randomized at the time of minting.
+- Overall, it was very difficult, but also very fun. Truly learnt a lot, and I can't wait to work on it again. 
+
+For my complete brain-dump documentation: 
 
 ## FAQ :question:
 1. What are the rarities?
