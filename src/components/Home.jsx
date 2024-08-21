@@ -5,6 +5,7 @@ import { Row, Col, Button } from 'reactstrap';
 
 import { ethers } from "ethers";
 import Warriors from '../artifacts/contracts/WarriorsNFT.sol/Warriors.json'
+import { selectWarrior, getTokenIdForWarrior } from '../utils/gacha.js';
 
 import summonImage from '../assets/summon.png';
 import '../App.css'
@@ -17,6 +18,7 @@ const contract = new ethers.Contract(contractAddress, Warriors.abi, signer);
 
 function Home() {
     const [totalMinted, setTotalMinted] = useState(0);
+    const [mintedTokens, setMintedTokens] = useState([]); // Keep track of all minted tokens
     const MAX_TOKENS = 18; // Maximum number of tokens you can mint
 
     useEffect(() => {
@@ -30,9 +32,16 @@ function Home() {
     };
 
     // Create an array of minted NFTs
-    const nfts = Array(totalMinted)
-        .fill(0)
-        .map((_, i) => i);
+    // const nfts = Array(totalMinted)
+    //     .fill(0)
+    //     .map((_, i) => i);
+
+    // Create an array of minted NFTs
+    const nfts = mintedTokens;
+
+    const handleMintedToken = (tokenId) => {
+        setMintedTokens((prevTokens) => [...prevTokens, tokenId]);
+    };
 
     return (
         <div>
@@ -49,7 +58,7 @@ function Home() {
                 {/* Add an extra slot for minting a new NFT if total minted is less than MAX_TOKENS */}
                 {totalMinted < MAX_TOKENS && (
                     <Col sm="4">
-                        <NFTImage tokenId={totalMinted} isMinting={true} getCount={getCount} />
+                        <NFTImage handleMintedToken={handleMintedToken} isMinting={true} getCount={getCount} />
                     </Col>
                 )}
             </Row>
@@ -57,7 +66,7 @@ function Home() {
     );
 }
 
-function NFTImage({ tokenId, getCount, isMinting }) {
+function NFTImage({ tokenId, getCount, isMinting, handleMintedToken }) {
     const contentId = 'QmeMmnTrU4Cx5mUHXb66esBhir4kmdBvrKQtqXxa9DzEcL';
     const metadataURI = `${contentId}/${tokenId}.json`; // for minting
     const metadataJSONURI = `https://gateway.pinata.cloud/ipfs/${contentId}/${tokenId}.json`; // for fetching metadata
@@ -102,15 +111,32 @@ function NFTImage({ tokenId, getCount, isMinting }) {
     }, [fetchMetadata, isMinted]);
 
     const mintToken = async () => {
+        // Use gacha system to select a rarity
+        let selectedRarity = selectWarrior();
+        console.log(`Selected rarity: ${selectedRarity}`);
+
+        // Get a random token ID based on rarity
+        let tokenId = getTokenIdForWarrior(selectedRarity);
+
+        while (tokenId === null) {
+            console.log(`Re-rolling due to no available tokens for rarity: ${selectedRarity}`);
+            selectedRarity = selectWarrior();  // Pick a new rarity via gacha
+            tokenId = getTokenIdForWarrior(selectedRarity); 
+        }
+
+        const metadataURI = `${contentId}/${tokenId}.json`; // Use the new tokenId for minting
+
         const connection = contract.connect(signer);
         const addr = connection.address;
-        console.log(`Minting token ${tokenId}...`);
+        console.log(`Minting token ${tokenId} with rarity ${selectedRarity}...`);
+
         const result = await contract.payToMint(addr, metadataURI, {
             value: ethers.utils.parseEther('0.05'),
         });
 
         await result.wait();
         getMintedStatus();
+        handleMintedToken(tokenId); 
         getCount();
     };
 
@@ -128,7 +154,7 @@ function NFTImage({ tokenId, getCount, isMinting }) {
             />
             <h5>ID #{tokenId}</h5>
 
-            {getMintedStatus() && attributes && (
+            {isMinted && attributes && (
                 <div>
                     <p>Rarity: {attributes.find(attr => attr.trait_type === 'Rarity')?.value}</p>
                     <p>Attack: {attributes.find(attr => attr.trait_type === 'Attack')?.value}</p>
@@ -152,7 +178,8 @@ function NFTImage({ tokenId, getCount, isMinting }) {
 NFTImage.propTypes = {
     tokenId: PropTypes.number.isRequired,
     getCount: PropTypes.func.isRequired,
-    isMinting: PropTypes.bool.isRequired
+    isMinting: PropTypes.bool.isRequired,
+    handleMintedToken: PropTypes.func.isRequired
 };
 
 export default Home;
