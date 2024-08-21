@@ -46,7 +46,7 @@ function Home() {
                 {/* Render all the minted NFTs */}
                 {nfts.map((tokenId) => (
                     <Col sm="4" key={tokenId}>
-                        <NFTImage tokenId={tokenId} isMinting={false} getCount={getCount} />
+                        <NFTImage tokenId={parseInt(tokenId)} isMinting={false} getCount={getCount} />
                     </Col>
                 ))}
 
