@@ -132,3 +132,13 @@ If all NFTs in that higher rarity has already been minted, the upgrade will jump
   - Mythic (Red)
   - Legendary (Yellow)
 
+2. What are the chances for each rarity?
+- Below are the base rarities, as more NFTs are minted, the chances for each increase:
+  - Common: 50%
+  - Rare: 30%
+  - Epic: 15%
+  - Mythic: 8%
+  - Legendary: 2%
+
+3. Why does the 18th NFT sometimes fail to appear after minting?
+- This issue may occur if the minting transaction is rejected multiple times or if the "Merge and Mint New Token" button is clicked multiple times in quick succession. To resolve this, restart your local blockchain network and clear MetaMask's activity data. After that, you should be able to mint successfully.
