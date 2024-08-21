@@ -84,29 +84,29 @@ The project is built using React, Solidity, and Hardhat for smart contract devel
 ## Usage :joystick:
 1. After setting up and navigating to the main page, please make sure MetaMask is on the correct Localhost network, and has no Activity:
 
-<img src="screenshots/1.png" alt="WarriorsNFT Home Page">
+<img src="./screenshots/1.png" alt="WarriorsNFT Home Page">
 
 2. Mint an NFT by pressing the Mint button, this will use the gacha system to determine which NFT will be minted:
 
-<img src="screenshots/2.png" alt="WarriorsNFT Home Page after Minting">
+<img src="./screenshots/2.png" alt="WarriorsNFT Home Page after Minting">
 
 Press the "Owned! Show URI" button to view the Metadata URI for that NFT.
 
 3. To check if 2 minted NFTs can be merge, enter their IDs into the "Enter Token ID" input and boxes, and press the "Check Merge Eligibility" button:
 
-<img src="screenshots/3.png" alt="WarriorsNFT Home Page after checking merge">
+<img src="./screenshots/3.png" alt="WarriorsNFT Home Page after checking merge">
 
 Both NFTs must have already been minted and must be of the same rarity. 
 
 4. Merge the eligible NFTs by pressing the "Merge and Mint New Token" button. This will burn the NFTs to mint a new NFT of a higher rarity. 
 
-<img src="screenshots/4.png" alt="WarriorsNFT Home Page after merging">
+<img src="./screenshots/4.png" alt="WarriorsNFT Home Page after merging">
 
 If all NFTs in that higher rarity has already been minted, the upgrade will jump to the next rarity, ultimately upgrading it twice. (e.g., Common -> Rare (if all minted) -> Epic)
 
 5. All the burnt tokens used for merging can be seen below, as well as your balance after pressing the "Check Balance" button (minting is free but gas fee is still incurred):
 
-<img src="screenshots/5.png" alt="WarriorsNFT Home Page when checking burnt tokens and balance">
+<img src="./screenshots/5.png" alt="WarriorsNFT Home Page when checking burnt tokens and balance">
 
 6. After all NFTs have been minted, the "Check Merge Eligibility" button will disappear, and there will be no more new Summon cards to mint. Currently, there is 18 total NFTs. 
 
