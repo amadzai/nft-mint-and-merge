@@ -10,6 +10,8 @@ import MergeAndMint from "./MergeAndMint";
 import '../App.css'
 
 const contractAddress = '0x5FbDB2315678afecb367f032d93F642f64180aa3';
+// For Amoy TestNet
+// const contractAddress = '0x56d9b46B86896f3f89Ed22fFF3389eFEa5B8B008';
 
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
