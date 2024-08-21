@@ -81,6 +81,19 @@ The project is built using React, Solidity, and Hardhat for smart contract devel
     If you would like to add your own images and generate the new metadata, remove the current images from the metadata/images, add yours following the number.png format
     (e.g., 0.png), and the script will create a new folder in metadata/series. Adjust the metadata as needed in the script.
 
+2. ***Testnet Deployment***:  
+    If you would like to deploy to a testnet, simply create a .env file in your root directory, and add the following information:
+    ```
+    POLYGON_AMOY_RPC_URL=[YOUR_RPC_URL] # Replace with the correct RPC URL
+    ACCOUNT_PRIVATE_KEY=[YOUR_PRIVATE_KEY] # Replace with your MetaMask private key
+    POLYGONSCAN_API_KEY=[YOUR_API_KEY] # Replace with your PolygonScan API key
+    ```
+    This will be using Polygon PoS chain on the Amoy testnet. Once set up, run this:
+    ```bash
+    npx hardhat run scripts/deploy.cjs --network polygonAmoy
+    ```
+    Make sure your MetaMask account is using the Polygon Amoy network.
+
 ## Usage :joystick:
 1. After setting up and navigating to the main page, please make sure MetaMask is on the correct Localhost network, and has no Activity:
 
@@ -121,7 +134,8 @@ If all NFTs in that higher rarity has already been minted, the upgrade will jump
 - Can be improved by creating more smart contract test scripts that are able to test edge cases and all the different functionalities of the contract.
 
 ## Process :bulb:
-
+1. Priorities:
+- As 
 
 ## FAQ :question:
 1. What are the rarities?
