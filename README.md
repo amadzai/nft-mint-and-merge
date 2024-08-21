@@ -40,39 +40,41 @@ The project is built using React, Solidity, and Hardhat for smart contract devel
     npm install
     ```
 
-4. ***Compile the smart contract***:
+4. **Compile the smart contract**:
     ```bash
     npx hardhat compile
     ```
 
-5. ***Start a local blockchain***
+5. **Start a local blockchain**
     ```bash
     npx hardhat node
     ```
 
-6. ***Deploy the contract to the local network in a separate terminal***
+6. **Deploy the contract to the local network in a separate terminal**
     ```bash
     npx hardhat run scripts/deploy.cjs --network localhost
     ```
 
-7. ***Add contract address to src/components/Home.jsx***
+7. **Add contract address to src/components/Home.jsx**
     ```bash
     WarriorsNFT deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3
     ```
     Replace the const contractAddress with your contractAddress
 
-8. ***Configure MetaMask***:
+8. **Configure MetaMask**:
+    <br>
     Add the local Hardhat network to MetaMask (usually running on http://localhost:8545) and import one of the accounts from the Hardhat node. You can use the private keys provided by Hardhat in the terminal.
 
-9. ***Start the front-end***:
+9. **Start the front-end**:
     ```bash
     npm run dev
     ```
     Click to go to the Local URL
 
-10. ***Clear MetaMask activity data***:
+10. **Clear MetaMask activity data**:  
+    <br>
     Not required the first time if new account. After the first time, when network 
     is restarted, go to MetaMask -> Settings -> Advanced -> Clear activity tab data to prevent nonce error.
 
 ### Optional Steps
-1. ***Generate new metadata***
+1. **Generate new metadata**
