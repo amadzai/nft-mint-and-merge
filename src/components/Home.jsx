@@ -59,6 +59,10 @@ function Home() {
                     </Col>
                 )}
             </Row>
+
+            <Row className="m-4">
+                <TestMergeEligibility />
+            </Row>
         </div>
     );
 }
@@ -118,7 +122,7 @@ function NFTImage({ tokenId, getCount, isMinting, handleMintedToken }) {
         while (tokenId === null) {
             console.log(`Re-rolling due to no available tokens for rarity: ${selectedRarity}`);
             selectedRarity = selectWarrior();  // Pick a new rarity via gacha if no more tokens for a rarity
-            tokenId = getTokenIdForWarrior(selectedRarity); 
+            tokenId = getTokenIdForWarrior(selectedRarity);
         }
 
         const metadataURI = `${contentId}/${tokenId}.json`;
@@ -127,13 +131,17 @@ function NFTImage({ tokenId, getCount, isMinting, handleMintedToken }) {
         const addr = connection.address;
         console.log(`Minting token ${tokenId} with rarity ${selectedRarity}...`);
 
-        const result = await contract.payToMint(addr, tokenId, metadataURI, {
+        const result = await contract.payToMint(addr, tokenId, metadataURI, selectedRarity, {
             value: ethers.utils.parseEther('0.05'),
         });
 
+        contract.on('TokenExistenceCheck', (tokenURI, exists) => {
+            console.log(`Token URI: ${tokenURI}, Exists: ${exists}`);
+          });
+
         await result.wait();
         getMintedStatus();
-        handleMintedToken(tokenId); 
+        handleMintedToken(tokenId);
         getCount();
     };
 
@@ -169,6 +177,49 @@ function NFTImage({ tokenId, getCount, isMinting, handleMintedToken }) {
                 <Button onClick={getURI} color="secondary" className="d-block m-auto">
                     Owned! Show URI
                 </Button>
+            )}
+        </div>
+    );
+}
+
+function TestMergeEligibility() {
+    const [tokenId1, setTokenId1] = useState('');
+    const [tokenId2, setTokenId2] = useState('');
+    const [canMerge, setCanMerge] = useState(null);
+
+    const checkMergeEligibility = async () => {
+        try {
+            const result = await contract.canMerge(tokenId1, tokenId2, { gasLimit: 500000 });
+            console.log(`Tokens ${tokenId1} and ${tokenId2} can be merged: ${result}`);
+            setCanMerge(result);
+        } catch (error) {
+            console.error("Error checking merge eligibility:", error.message);
+        }
+    };
+    
+    return (
+        <div>
+            <input
+                type="number"
+                value={tokenId1}
+                onChange={(e) => setTokenId1(e.target.value)}
+                className="m-3"
+                placeholder="Enter Token ID 1"
+            />
+            <input
+                type="number"
+                value={tokenId2}
+                onChange={(e) => setTokenId2(e.target.value)}
+                className="m-3"
+                placeholder="Enter Token ID 2"
+            />
+            <Button onClick={checkMergeEligibility} color="primary" className="m3">
+                Check Merge Eligibility
+            </Button>
+            {canMerge !== null && (
+                <p>
+                    Tokens {tokenId1} and {tokenId2} can {canMerge ? '' : 'not'} be merged.
+                </p>
             )}
         </div>
     );
