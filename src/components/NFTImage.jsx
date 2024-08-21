@@ -9,6 +9,7 @@ import summonImage from '../assets/summon.png';
 import '../App.css'
 
 const NFTImage = ({ tokenId, getCount, isMinting, handleMintedToken, contract, signer }) => {
+    // Or replace with your CID
     const contentId = 'QmeMmnTrU4Cx5mUHXb66esBhir4kmdBvrKQtqXxa9DzEcL';
     const metadataURI = `${contentId}/${tokenId}.json`; // for minting
     const metadataJSONURI = `https://gateway.pinata.cloud/ipfs/${contentId}/${tokenId}.json`; // for fetching metadata

@@ -13,6 +13,7 @@ const MergeAndMint = ({ setMintedTokens, getCount, contract, signer }) => {
     const [canMerge, setCanMerge] = useState(null);
     const [mergeMessage, setMergeMessage] = useState('');
     const [burntTokenIds, setBurntTokenIds] = useState([]);
+    // Or replace with your CID
     const contentId = 'QmeMmnTrU4Cx5mUHXb66esBhir4kmdBvrKQtqXxa9DzEcL';
 
     const checkMergeEligibility = async () => {
