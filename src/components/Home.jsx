@@ -171,10 +171,10 @@ function NFTImage({ tokenId, getCount, isMinting, handleMintedToken }) {
 }
 
 NFTImage.propTypes = {
-    tokenId: PropTypes.number.isRequired,
+    tokenId: PropTypes.number,
     getCount: PropTypes.func.isRequired,
     isMinting: PropTypes.bool.isRequired,
-    handleMintedToken: PropTypes.func.isRequired
+    handleMintedToken: PropTypes.func
 };
 
 export default Home;
