@@ -36,6 +36,8 @@ function Home() {
 
     const handleMintedToken = (tokenId) => {
         setMintedTokens((prevTokens) => [...prevTokens, tokenId]);
+        console.log(mintedTokens.size);
+        console.log([...mintedTokens]);
     };
 
     return (
@@ -125,7 +127,7 @@ function NFTImage({ tokenId, getCount, isMinting, handleMintedToken }) {
         const addr = connection.address;
         console.log(`Minting token ${tokenId} with rarity ${selectedRarity}...`);
 
-        const result = await contract.payToMint(addr, metadataURI, {
+        const result = await contract.payToMint(addr, tokenId, metadataURI, {
             value: ethers.utils.parseEther('0.05'),
         });
 
@@ -136,7 +138,9 @@ function NFTImage({ tokenId, getCount, isMinting, handleMintedToken }) {
     };
 
     async function getURI() {
+        console.log(`GETURI Token number ${tokenId}`)
         const uri = await contract.tokenURI(tokenId);
+        console.log(uri)
         alert(uri);
     }
 

@@ -58,12 +58,13 @@ contract Warriors is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     // Allows other people to pay using Ether for an NFT
     function payToMint(
         address recipient,
+        uint256 tokenId,
         string memory metadataURI
     ) public payable returns (uint256) {
         require(existingURIs[metadataURI] != 1, 'NFT already minted!');
         require(msg.value >= 0.05 ether, 'Insufficient amount!');
 
-        uint256 tokenId = _nextTokenId++;
+        _nextTokenId++; // Increment to track number of minted IDs
         existingURIs[metadataURI] = 1;
 
         _mint(recipient, tokenId);
