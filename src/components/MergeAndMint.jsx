@@ -20,7 +20,7 @@ const MergeAndMint = ({ setMintedTokens, getCount, contract, signer }) => {
         try {
             const result = await contract.canMerge(tokenId1, tokenId2);
             setCanMerge(result);
-            setMergeMessage(`Tokens ${tokenId1} and ${tokenId2} can ${result ? '' : 'not'} be merged.`);
+            setMergeMessage(`Tokens ${tokenId1} and ${tokenId2} can${result ? '' : 'not'} be merged.`);
         } catch (error) {
             console.error("Error checking merge eligibility:", error.message);
         }
@@ -58,8 +58,8 @@ const MergeAndMint = ({ setMintedTokens, getCount, contract, signer }) => {
 
     return (
         <div>
-            <input type="number" value={tokenId1} onChange={(e) => setTokenId1(e.target.value)} className="m-3" placeholder="Enter Token ID 1" />
-            <input type="number" value={tokenId2} onChange={(e) => setTokenId2(e.target.value)} className="m-3" placeholder="Enter Token ID 2" />
+            <input type="number" value={tokenId1} onChange={(e) => setTokenId1(e.target.value)} className="m-3 input-background" placeholder="Enter Token ID 1" />
+            <input type="number" value={tokenId2} onChange={(e) => setTokenId2(e.target.value)} className="m-3 input-background" placeholder="Enter Token ID 2" />
             <Button onClick={checkMergeEligibility} className="check-button">Check Merge Eligibility</Button>
             {mergeMessage && (
                 <div>
