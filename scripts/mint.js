@@ -17,7 +17,6 @@ async function main() {
       
       const tx = await warriors.payToMint(deployer.address, `metadata${i}.json`, {
         value: ethers.utils.parseEther("0.05"),
-        gasLimit: 12000000,  
       });
       
       await tx.wait();
