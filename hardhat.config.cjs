@@ -10,10 +10,6 @@ module.exports = {
     hardhat: {
       gas: 12000000, 
       blockGasLimit: 0x1fffffffffffff,
-    //   mining: {
-    //     auto: false,
-    //     interval: 5000 
-    //   },
     },
   },
 };
