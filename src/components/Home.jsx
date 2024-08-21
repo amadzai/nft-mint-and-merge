@@ -6,6 +6,7 @@ import { ethers } from "ethers";
 import Warriors from '../artifacts/contracts/WarriorsNFT.sol/Warriors.json'
 import NFTImage from "./NFTImage";
 import MergeAndMint from "./MergeAndMint";
+import Header from "./Header"
 
 import '../App.css'
 
@@ -38,15 +39,15 @@ function Home() {
 
     return (
         <div>
-            <WalletBalance />
-            <Row>
+            <Header />
+            <Row className="justify-content-center">
                 {mintedTokens.map((tokenId) => (
-                    <Col sm="4" key={tokenId}>
+                    <Col key={tokenId} className="col-sm-auto">
                         <NFTImage tokenId={parseInt(tokenId)} isMinting={false} getCount={getCount} handleMintedToken={handleMintedToken} contract={contract} signer={signer} />
                     </Col>
                 ))}
                 {totalMinted < MAX_TOKENS && (
-                    <Col sm="4">
+                    <Col className="col-sm-auto">
                         <NFTImage isMinting={true} getCount={getCount} handleMintedToken={handleMintedToken} contract={contract} signer={signer} />
                     </Col>
                 )}
@@ -56,6 +57,7 @@ function Home() {
                     <MergeAndMint setMintedTokens={setMintedTokens} getCount={getCount} contract={contract} signer={signer} />
                 </Row>
             )}
+            <WalletBalance />
         </div>
     );
 }

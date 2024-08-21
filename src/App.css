@@ -1,6 +1,51 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    /* max-width: 1280px; */
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+    background-color: #222831;
+    min-height: 100vh;
 }
+
+.uri-button {
+    background-color: #05868d !important;
+}
+
+.mint-button {
+    background-color: #94153b !important;
+}
+
+.warrior-card {
+    background-color: #393E46 !important;
+}
+
+.warrior-text {
+    color: rgb(224, 221, 221) !important;
+}
+
+.balance-button {
+    background-color: #13a17e !important;
+}
+
+.check-button {
+    background-color: #880d88 !important;
+}
+
+.header-background {
+    background-color: #393E46 !important;
+}
+
+.logo-image {
+    width: 26rem;
+}
+
+/* .warrior-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+} */
+
+/* .warrior-image {
+    width: 300px;
+} */

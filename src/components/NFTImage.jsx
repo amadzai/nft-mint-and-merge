@@ -74,25 +74,25 @@ const NFTImage = ({ tokenId, getCount, isMinting, handleMintedToken, contract, s
     };
 
     return (
-        <div>
+        <div className="card my-4 warrior-card" style={{ width: "24rem" }}>
             <img
                 src={isMinting || !isMinted ? summonImage : imageURI}
-                className="img-fluid mt-4"
+                className="img-fluid"
                 alt={`Token ${tokenId}`}
             />
-            <h5>ID #{tokenId}</h5>
+            <h5 className='mt-3 warrior-text'>ID #{tokenId}</h5>
             {isMinted && attributes && (
                 <div>
-                    <p>Rarity: {attributes.find(attr => attr.trait_type === 'Rarity')?.value}</p>
-                    <p>Attack: {attributes.find(attr => attr.trait_type === 'Attack')?.value}</p>
-                    <p>Defense: {attributes.find(attr => attr.trait_type === 'Defense')?.value}</p>
+                    <p className='warrior-text'>Rarity: {attributes.find(attr => attr.trait_type === 'Rarity')?.value}</p>
+                    <p className='warrior-text'>Attack: {attributes.find(attr => attr.trait_type === 'Attack')?.value}</p>
+                    <p className='warrior-text'>Defense: {attributes.find(attr => attr.trait_type === 'Defense')?.value}</p>
                 </div>
             )}
 
             {!isMinted || isMinting ? (
-                <Button onClick={mintToken} color="primary" className="d-block m-auto">Mint</Button>
+                <Button onClick={mintToken} className="d-block mb-4 mx-5 mint-button warrior-text">Mint</Button>
             ) : (
-                <Button onClick={getURI} color="secondary" className="d-block m-auto">Owned! Show URI</Button>
+                <Button onClick={getURI} className="d-block mb-4 mx-5 uri-button warrior-text">Owned! Show URI</Button>
             )}
         </div>
     );

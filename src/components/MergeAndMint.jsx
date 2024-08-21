@@ -59,23 +59,21 @@ const MergeAndMint = ({ setMintedTokens, getCount, contract, signer }) => {
         <div>
             <input type="number" value={tokenId1} onChange={(e) => setTokenId1(e.target.value)} className="m-3" placeholder="Enter Token ID 1" />
             <input type="number" value={tokenId2} onChange={(e) => setTokenId2(e.target.value)} className="m-3" placeholder="Enter Token ID 2" />
-            <Button onClick={checkMergeEligibility} color="primary" className="m3">Check Merge Eligibility</Button>
+            <Button onClick={checkMergeEligibility} className="check-button">Check Merge Eligibility</Button>
             {mergeMessage && (
                 <div>
-                    <p>{mergeMessage}</p>
+                    <p className='warrior-text'>{mergeMessage}</p>
                     {canMerge && (
-                        <Button onClick={handleMergeAndMint} color="success">Merge and Mint New Token</Button>
+                        <Button onClick={handleMergeAndMint} className='mint-button'>Merge and Mint New Token</Button>
                     )}
                 </div>
             )}
             {burntTokenIds.length > 0 && (
                 <div className="mt-3">
-                    <h5>Burnt Tokens:</h5>
-                    <ul>
+                    <h5 className='warrior-text'>Burnt Tokens:</h5>
                         {burntTokenIds.map((burntTokenId, index) => (
-                            <li key={index}>Token ID #{burntTokenId}</li>
+                            <li className='warrior-text' key={index}>Token ID #{burntTokenId}</li>
                         ))}
-                    </ul>
                 </div>
             )}
         </div>
