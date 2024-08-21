@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useState } from "react";
 import { Button } from 'reactstrap';
 
-import { ethers } from "ethers";
+// import { ethers } from "ethers"; // If using payToMint
 import { getTokenIdForWarrior } from '../utils/gacha.js';
 
 import '../App.css'
@@ -17,7 +17,7 @@ const MergeAndMint = ({ setMintedTokens, getCount, contract, signer }) => {
 
     const checkMergeEligibility = async () => {
         try {
-            const result = await contract.canMerge(tokenId1, tokenId2, { gasLimit: 500000 });
+            const result = await contract.canMerge(tokenId1, tokenId2);
             setCanMerge(result);
             setMergeMessage(`Tokens ${tokenId1} and ${tokenId2} can ${result ? '' : 'not'} be merged.`);
         } catch (error) {
@@ -28,17 +28,20 @@ const MergeAndMint = ({ setMintedTokens, getCount, contract, signer }) => {
     const handleMergeAndMint = async () => {
         if (!canMerge) return;
         try {
-            const mergeTx = await contract.mergeTokens(tokenId1, tokenId2, { gasLimit: 500000 });
+            const mergeTx = await contract.mergeTokens(tokenId1, tokenId2);
             await mergeTx.wait();
 
             const currentRarity = await contract.tokenRarity(tokenId1);
             const nextRarity = await contract.getNextRarity(currentRarity);
             const newTokenId = getTokenIdForWarrior(nextRarity);
 
-            const mintTx = await contract.payToMint(signer.getAddress(), newTokenId, `${contentId}/${newTokenId}.json`, nextRarity, {
-                gasLimit: 500000,
-                value: ethers.utils.parseEther('0.05'),
-            });
+            // If using payToMint
+            // const mintTx = await contract.payToMint(signer.getAddress(), newTokenId, `${contentId}/${newTokenId}.json`, nextRarity, {
+            //     gasLimit: 500000,
+            //     value: ethers.utils.parseEther('0.05'),
+            // });
+
+            const mintTx = await contract.safeMint(signer.getAddress(), newTokenId, `${contentId}/${newTokenId}.json`, nextRarity);
             await mintTx.wait();
 
             setMintedTokens((prevTokens) => prevTokens.filter(id => id !== tokenId1 && id !== tokenId2));

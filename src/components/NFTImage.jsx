@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { useEffect, useState, useCallback } from "react";
 import { Button } from 'reactstrap';
 
-import { ethers } from "ethers";
+// import { ethers } from "ethers"; // If using payToMint
 import { selectWarrior, getTokenIdForWarrior } from '../utils/gacha.js';
 
 import summonImage from '../assets/summon.png';
@@ -54,9 +54,13 @@ const NFTImage = ({ tokenId, getCount, isMinting, handleMintedToken, contract, s
 
         const metadataURI = `${contentId}/${tokenId}.json`;
         const connection = contract.connect(signer);
-        const result = await contract.payToMint(connection.address, tokenId, metadataURI, selectedRarity, {
-            value: ethers.utils.parseEther('0.05'),
-        });
+
+        // If using payToMint
+        // const result = await contract.payToMint(connection.address, tokenId, metadataURI, selectedRarity, {
+        //     value: ethers.utils.parseEther('0.05'),
+        // });
+
+        const result = await contract.safeMint(connection.address, tokenId, metadataURI, selectedRarity, {});
 
         await result.wait();
         getMintedStatus();
