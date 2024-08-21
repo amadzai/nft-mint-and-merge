@@ -126,8 +126,9 @@ If all NFTs in that higher rarity has already been minted, the upgrade will jump
 ## FAQ :question:
 1. What are the rarities?
 - There are 5 total rarities, with 4 Warriors in each except the Legendary rarity where there's only 2:
--- <span style="color: green;">Common</span>
--- <span style="color: blue;">Rare</span>
--- <span style="color: purple;">Epic</span>
--- <span style="color: red;">Mythic</span>
--- <span style="color: yellow;">Legendary</span>
+  - Common (Green)
+  - Rare (Blue)
+  - Epic (Purple)
+  - Mythic (Red)
+  - Legendary (Yellow)
+
