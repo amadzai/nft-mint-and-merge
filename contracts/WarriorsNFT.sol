@@ -40,6 +40,7 @@ contract Warriors is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         rarityMaxCount["Legendary"] = 2;
     }
 
+    // Conflicts with fetching of metadata URI
     // function _baseURI() internal pure override returns (string memory) {
     //     return "ipfs://";
     // }
@@ -85,7 +86,9 @@ contract Warriors is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
 
         _mint(recipient, tokenId);
         _setTokenURI(tokenId, metadataURI);
+
         tokenRarity[tokenId] = rarity;
+        rarityMintedCount[rarity]++;
 
         emit TokenExistenceCheck(metadataURI, existingURIs[metadataURI]);
 
@@ -97,7 +100,7 @@ contract Warriors is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         return _nextTokenId;
     }
 
-    // Merging related
+    // MERGING RELATED FUNCTIONS
     function canMerge(
         uint256 tokenId1,
         uint256 tokenId2
@@ -143,5 +146,63 @@ contract Warriors is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         }
 
         return (keccak256(bytes(rarity1)) == keccak256(bytes(rarity2)));
+    }
+
+    // Event to notify the front-end to select a new token
+    event MergeSuccess(uint256 tokenId1, uint256 tokenId2, string nextRarity);
+
+    // Event to notify the front-end about the burnt tokens
+    event TokensBurned(uint256 tokenId1, uint256 tokenId2);
+
+    // Function to merge two tokens
+    function mergeTokens(uint256 tokenId1, uint256 tokenId2) public {
+        // Ensure the tokens can be merged
+        require(canMerge(tokenId1, tokenId2), "Tokens cannot be merged");
+
+        // Determine the next rarity level BEFORE burning the tokens
+        string memory currentRarity = tokenRarity[tokenId1]; // Both tokens are of the same rarity
+        string memory nextRarity = getNextRarity(currentRarity);
+
+        // Ensure the next rarity level exists and has availability
+        require(bytes(nextRarity).length > 0, "No higher rarity available");
+
+        // Burn the two tokens
+        _burn(tokenId1);
+        _burn(tokenId2);
+
+        // Emit an event for the front-end to know tokens were burnt
+        emit TokensBurned(tokenId1, tokenId2);
+
+        // Emit an event for the front-end to handle the next token selection via gacha
+        emit MergeSuccess(tokenId1, tokenId2, nextRarity);
+    }
+
+    // Updated utility function to get the next available rarity level
+    function getNextRarity(
+        string memory currentRarity
+    ) public view returns (string memory) {
+        bool foundCurrent = false;
+
+        // Loop through the rarity levels, starting from the current rarity
+        for (uint256 i = 0; i < rarityLevels.length; i++) {
+            if (
+                keccak256(bytes(currentRarity)) ==
+                keccak256(bytes(rarityLevels[i]))
+            ) {
+                foundCurrent = true;
+            }
+
+            // If current rarity is found, start checking the next ones
+            if (foundCurrent && i + 1 < rarityLevels.length) {
+                string memory nextRarity = rarityLevels[i + 1];
+                // Check if the next rarity has available tokens
+                if (
+                    rarityMintedCount[nextRarity] < rarityMaxCount[nextRarity]
+                ) {
+                    return nextRarity; // Return the next rarity with available tokens
+                }
+            }
+        }
+        return ""; // Return empty if no higher rarity is available
     }
 }

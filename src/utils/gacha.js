@@ -57,8 +57,3 @@ export function getTokenIdForWarrior(rarity) {
     console.log(`Selected token index for ${rarity}: ${randomIndex}, token: ${token}`);
     return token;
 }
-
-// Reset function for testing
-// export function resetMintedTokens() {
-//     mintedTokens.clear();
-// }

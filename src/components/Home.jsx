@@ -59,10 +59,12 @@ function Home() {
                     </Col>
                 )}
             </Row>
-
-            <Row className="m-4">
-                <TestMergeEligibility />
-            </Row>
+            {/* Add buttons to check merging availability and to merge NFTs if total minted is less than MAX_TOKENS */}
+            {totalMinted < MAX_TOKENS && (
+                <Row className="m-4">
+                    <MergeAndMint setMintedTokens={setMintedTokens} getCount={getCount} />
+                </Row>
+            )}
         </div>
     );
 }
@@ -137,7 +139,7 @@ function NFTImage({ tokenId, getCount, isMinting, handleMintedToken }) {
 
         contract.on('TokenExistenceCheck', (tokenURI, exists) => {
             console.log(`Token URI: ${tokenURI}, Exists: ${exists}`);
-          });
+        });
 
         await result.wait();
         getMintedStatus();
@@ -182,21 +184,76 @@ function NFTImage({ tokenId, getCount, isMinting, handleMintedToken }) {
     );
 }
 
-function TestMergeEligibility() {
+function MergeAndMint({ setMintedTokens, getCount }) {
     const [tokenId1, setTokenId1] = useState('');
     const [tokenId2, setTokenId2] = useState('');
     const [canMerge, setCanMerge] = useState(null);
+    const [mergeMessage, setMergeMessage] = useState('');
+    const [burntTokenIds, setBurntTokenIds] = useState([]);
+    const contentId = 'QmeMmnTrU4Cx5mUHXb66esBhir4kmdBvrKQtqXxa9DzEcL';
 
     const checkMergeEligibility = async () => {
         try {
             const result = await contract.canMerge(tokenId1, tokenId2, { gasLimit: 500000 });
             console.log(`Tokens ${tokenId1} and ${tokenId2} can be merged: ${result}`);
             setCanMerge(result);
+
+            // Update the merge message based on the result
+            setMergeMessage(`Tokens ${tokenId1} and ${tokenId2} can ${result ? '' : 'not'} be merged.`);
         } catch (error) {
             console.error("Error checking merge eligibility:", error.message);
         }
     };
-    
+
+    const handleMergeAndMint = async () => {
+        if (!canMerge) {
+            console.log("Tokens cannot be merged.");
+            return;
+        }
+
+        try {
+            // Call the contract to handle the merge and burn
+            const mergeTx = await contract.mergeTokens(tokenId1, tokenId2, { gasLimit: 500000 });
+            await mergeTx.wait();
+
+            // Get the current rarity of tokenId1
+            const currentRarity = await contract.tokenRarity(tokenId1);
+            console.log(`Current rarity for token ${tokenId1} is: ${currentRarity}`);
+
+            // Get the next rarity and mint a new token
+            const nextRarity = await contract.getNextRarity(currentRarity); 
+            console.log(`Next Rarity Is: ${nextRarity}`)
+            const newTokenId = getTokenIdForWarrior(nextRarity); // Use gacha to get the token ID for the next rarity
+            console.log(`Next Rarity Is: ${nextRarity}`)
+
+            // Call the contract to mint the new token
+            const mintTx = await contract.payToMint(signer.getAddress(), newTokenId, `${contentId}/${newTokenId}.json`, nextRarity, {
+                gasLimit: 500000,
+                value: ethers.utils.parseEther('0.05'),
+            });
+
+            await mintTx.wait();
+
+            console.log(`Successfully merged tokens ${tokenId1} and ${tokenId2} and minted new token ${newTokenId} of rarity ${nextRarity}`);
+
+            // Remove the burnt tokens from the state
+            setMintedTokens((prevTokens) => prevTokens.filter((id) => id !== tokenId1 && id !== tokenId2));
+
+            // Update the state with the newly minted token
+            setMintedTokens((prevTokens) => [...prevTokens, newTokenId]);
+            getCount();
+
+            // Add the burnt tokens to the burntTokenIds state
+            setBurntTokenIds((prevBurntTokens) => [...prevBurntTokens, tokenId1, tokenId2]);
+
+            // Reset the canMerge state and message
+            setCanMerge(null);
+            setMergeMessage('');  // Clear the message after merging
+        } catch (error) {
+            console.error("Error merging and minting:", error.message);
+        }
+    };
+
     return (
         <div>
             <input
@@ -216,11 +273,31 @@ function TestMergeEligibility() {
             <Button onClick={checkMergeEligibility} color="primary" className="m3">
                 Check Merge Eligibility
             </Button>
-            {canMerge !== null && (
-                <p>
-                    Tokens {tokenId1} and {tokenId2} can {canMerge ? '' : 'not'} be merged.
-                </p>
+            {mergeMessage && (
+                <div>
+                    <p>{mergeMessage}</p>
+                    {canMerge && (
+                        <div>
+                            <Button onClick={handleMergeAndMint} color="success">
+                                Merge and Mint New Token
+                            </Button>
+                        </div>
+                    )}
+                </div>
             )}
+            <div className="w-25">
+                {/* Render the list of burnt token IDs below the button */}
+                {burntTokenIds.length > 0 && (
+                    <div className="mt-3">
+                        <h5>Burnt Tokens:</h5>
+                        <ul>
+                            {burntTokenIds.map((burntTokenId, index) => (
+                                <li key={index}>Token ID #{burntTokenId}</li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
@@ -229,7 +306,12 @@ NFTImage.propTypes = {
     tokenId: PropTypes.number,
     getCount: PropTypes.func.isRequired,
     isMinting: PropTypes.bool.isRequired,
-    handleMintedToken: PropTypes.func
+    handleMintedToken: PropTypes.func,
+};
+
+MergeAndMint.propTypes = {
+    setMintedTokens: PropTypes.func,  // Validate the setMintedTokens prop as a required function
+    getCount: PropTypes.func.isRequired,
 };
 
 export default Home;
