@@ -8,8 +8,7 @@ The project is built using React, Solidity, and Hardhat for smart contract devel
 - [Features](#features-star)
 - [Installation](#installation-hammer_and_wrench)
 - [Usage](#usage-joystick)
-- [Limitations](#limitations-no_entry)
-- [Future Improvements](#future-improvements-building_construction)
+- [Limitations & Future Improvements](#limitations-no_entry)
 - [Process](#process-bulb)
 - [FAQ](#faq-question)
 
@@ -75,4 +74,12 @@ The project is built using React, Solidity, and Hardhat for smart contract devel
     is restarted, go to MetaMask -> Settings -> Advanced -> Clear activity tab data to prevent nonce error.
 
 ### Optional Steps
-1. **Generate new metadata**
+1. **Generate new metadata**:
+    ```bash
+    node scripts/generateMetadata.js
+    ```
+    If you would like to add your own images and generate the new metadata, remove the current images from the metadata/images, add yours following the number.png format
+    (e.g., 0.png), and the script will create a new folder in metadata/series. Adjust the metadata as needed in the script.
+
+## Usage :joystick:
+1. After setting up and navigating to the main page, please make sure MetaMask is on the correct Localhost network, and has no Activity:
