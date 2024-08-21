@@ -81,18 +81,18 @@ The project is built using React, Solidity, and Hardhat for smart contract devel
     If you would like to add your own images and generate the new metadata, remove the current images from the metadata/images, add yours following the number.png format
     (e.g., 0.png), and the script will create a new folder in metadata/series. Adjust the metadata as needed in the script.
 
-2. ***Testnet Deployment***:  
+2. **Testnet Deployment**:  
     If you would like to deploy to a testnet, simply create a .env file in your root directory, and add the following information:
     ```
     POLYGON_AMOY_RPC_URL=[YOUR_RPC_URL] # Replace with the correct RPC URL
     ACCOUNT_PRIVATE_KEY=[YOUR_PRIVATE_KEY] # Replace with your MetaMask private key
     POLYGONSCAN_API_KEY=[YOUR_API_KEY] # Replace with your PolygonScan API key
     ```
-    This will be using Polygon PoS chain on the Amoy testnet. Once set up, run this:
+    This will be using Polygon PoS chain on the Amoy testnet. Once set up, run:
     ```bash
     npx hardhat run scripts/deploy.cjs --network polygonAmoy
     ```
-    Make sure your MetaMask account is using the Polygon Amoy network.
+    Make sure your MetaMask account is connected to the Polygon Amoy network.
 
 ## Usage :joystick:
 1. After setting up and navigating to the main page, please make sure MetaMask is on the correct Localhost network, and has no Activity:
@@ -135,7 +135,18 @@ If all NFTs in that higher rarity has already been minted, the upgrade will jump
 
 ## Process :bulb:
 1. Priorities:
-- As 
+- As this is my first time creating smart contracts, and with very little experience in JavaScript frameworks for both the front-end and back-end, the initial priorities based on what I believe I was capable of were:
+  - Get the smart contract up-and-running.
+  - Create a basic React front-end to test the minting of an NFT. 
+  - Successfully mint an NFT where the image and metadata would be updated, and the state of the NFT is stored.
+  - Implement a gacha system to randomly (based on probability) mint an NFTs based on their rarity.
+  - Implement the merging/burning function that upgrades an NFT to a higher rarity.
+  - Deploy the contracts on a testnet.
+  - Add styling and additional pages to the front-end.
+  - Implement the entire back-end logic.
+- I was able to barely reach the the Add styling to the front-end stage, without adding any additional pages in the time given. 
+
+This included learning the necessary dependencies and setup (thanks Fireship), the Solidity syntax, and how NFTs are generated overall. As many of the beginner guides were from a few years back, it required a lot of debugging, researching, and ChatGPT (which also caused more bugs).
 
 ## FAQ :question:
 1. What are the rarities?
