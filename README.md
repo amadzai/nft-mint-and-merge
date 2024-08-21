@@ -8,7 +8,7 @@ The project is built using React, Solidity, and Hardhat for smart contract devel
 - [Features](#features-star)
 - [Installation](#installation-hammer_and_wrench)
 - [Usage](#usage-joystick)
-- [Limitations & Future Improvements](#limitations-&-future-improvements-no_entry)
+- [Limitations & Future Improvements](#limitations--future-improvements-no_entry)
 - [Process](#process-bulb)
 - [FAQ](#faq-question)
 
@@ -112,14 +112,22 @@ If all NFTs in that higher rarity has already been minted, the upgrade will jump
 
 ## Limitations & Future Improvements :no_entry:
 1. No backend implementation: Currently, all logic is handled on-chain and through the front-end.  
-   Can be improved by adding API endpoints to mint, retrieve, and merge user NFTs that are connected with their wallets, as well as a database to store these data off-chain.
+- Can be improved by adding API endpoints to mint, retrieve, and merge user NFTs that are connected with their wallets, as well as a database to store these data off-chain.
 
 2. Simple single-page dapp: There is only one page as of now, with a simple UI and style.  
-   Separate pages for minting, merging, viewing collection, and a guide displaying the gacha system and rarities will create a better user experience. 
+- Separate pages for minting, merging, viewing collection, and a guide displaying the gacha system and rarities will create a better user experience. 
 
 3. Lack of smart contract tests: There is only one test script that is not robust, which only tests the payment and ownership of an NFT.  
-   Can be improved by creating more smart contract test scripts that are able to test edge cases and all the different functionalities of the contract.
+- Can be improved by creating more smart contract test scripts that are able to test edge cases and all the different functionalities of the contract.
 
 ## Process :bulb:
 
+
 ## FAQ :question:
+1. What are the rarities?
+- There are 5 total rarities, with 4 Warriors in each except the Legendary rarity where there's only 2:
+-- <span style="color: green;">Common</span>
+-- <span style="color: blue;">Rare</span>
+-- <span style="color: purple;">Epic</span>
+-- <span style="color: red;">Mythic</span>
+-- <span style="color: yellow;">Legendary</span>
