@@ -8,7 +8,7 @@ The project is built using React, Solidity, and Hardhat for smart contract devel
 - [Features](#features-star)
 - [Installation](#installation-hammer_and_wrench)
 - [Usage](#usage-joystick)
-- [Limitations & Future Improvements](#limitations-no_entry)
+- [Limitations & Future Improvements](#limitations-&-future-improvements-no_entry)
 - [Process](#process-bulb)
 - [FAQ](#faq-question)
 
@@ -108,6 +108,18 @@ If all NFTs in that higher rarity has already been minted, the upgrade will jump
 
 <img src="./screenshots/5.png" alt="WarriorsNFT Home Page when checking burnt tokens and balance">
 
-6. After all NFTs have been minted, the "Check Merge Eligibility" button will disappear, and there will be no more new Summon cards to mint. Currently, there is 18 total NFTs. 
+6. After all NFTs have been minted, the "Check Merge Eligibility" button will disappear, and there will be no more new Summon cards to mint. Currently, there is 18 total NFTs. Restart the network and clear the MetaMask activity data to use again.
 
+## Limitations & Future Improvements :no_entry:
+1. No backend implementation: Currently, all logic is handled on-chain and through the front-end.  
+   Can be improved by adding API endpoints to mint, retrieve, and merge user NFTs that are connected with their wallets, as well as a database to store these data off-chain.
 
+2. Simple single-page dapp: There is only one page as of now, with a simple UI and style.  
+   Separate pages for minting, merging, viewing collection, and a guide displaying the gacha system and rarities will create a better user experience. 
+
+3. Lack of smart contract tests: There is only one test script that is not robust, which only tests the payment and ownership of an NFT.  
+   Can be improved by creating more smart contract test scripts that are able to test edge cases and all the different functionalities of the contract.
+
+## Process :bulb:
+
+## FAQ :question:
