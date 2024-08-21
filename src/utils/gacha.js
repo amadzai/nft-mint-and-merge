@@ -58,7 +58,7 @@ export function getTokenIdForWarrior(rarity) {
     return token;
 }
 
-// Optionally, you can export a reset function for testing
+// Reset function for testing
 // export function resetMintedTokens() {
 //     mintedTokens.clear();
 // }

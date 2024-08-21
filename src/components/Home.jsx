@@ -19,7 +19,7 @@ const contract = new ethers.Contract(contractAddress, Warriors.abi, signer);
 function Home() {
     const [totalMinted, setTotalMinted] = useState(0);
     const [mintedTokens, setMintedTokens] = useState([]); // Keep track of all minted tokens
-    const MAX_TOKENS = 18; // Maximum number of tokens you can mint
+    const MAX_TOKENS = 18; // Maximum number of tokens that can be minted
 
     useEffect(() => {
         getCount();
@@ -30,11 +30,6 @@ function Home() {
         console.log(parseInt(count));
         setTotalMinted(parseInt(count));
     };
-
-    // Create an array of minted NFTs
-    // const nfts = Array(totalMinted)
-    //     .fill(0)
-    //     .map((_, i) => i);
 
     // Create an array of minted NFTs
     const nfts = mintedTokens;
@@ -120,11 +115,11 @@ function NFTImage({ tokenId, getCount, isMinting, handleMintedToken }) {
 
         while (tokenId === null) {
             console.log(`Re-rolling due to no available tokens for rarity: ${selectedRarity}`);
-            selectedRarity = selectWarrior();  // Pick a new rarity via gacha
+            selectedRarity = selectWarrior();  // Pick a new rarity via gacha if no more tokens for a rarity
             tokenId = getTokenIdForWarrior(selectedRarity); 
         }
 
-        const metadataURI = `${contentId}/${tokenId}.json`; // Use the new tokenId for minting
+        const metadataURI = `${contentId}/${tokenId}.json`;
 
         const connection = contract.connect(signer);
         const addr = connection.address;
