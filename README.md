@@ -9,7 +9,6 @@ The project is built using React, Solidity, and Hardhat for smart contract devel
 - [Installation](#installation-hammer_and_wrench)
 - [Usage](#usage-joystick)
 - [Limitations & Future Improvements](#limitations--future-improvements-no_entry)
-- [Process](#process-bulb)
 - [FAQ](#faq-question)
 
 ## Features :star:
@@ -99,13 +98,13 @@ The project is built using React, Solidity, and Hardhat for smart contract devel
 
 <img src="./screenshots/1.png" alt="WarriorsNFT Home Page">
 
-2. Mint an NFT by pressing the Mint button, this will use the gacha system to determine which NFT will be minted:
+2. Mint an NFT by pressing the "Mint" button, this will use the gacha system to determine which NFT will be minted:
 
 <img src="./screenshots/2.png" alt="WarriorsNFT Home Page after Minting">
 
 Press the "Owned! Show URI" button to view the Metadata URI for that NFT.
 
-3. To check if 2 minted NFTs can be merge, enter their IDs into the "Enter Token ID" input and boxes, and press the "Check Merge Eligibility" button:
+3. To check if 2 minted NFTs can be merged, enter their IDs into the "Enter Token ID" input box, and press the "Check Merge Eligibility" button:
 
 <img src="./screenshots/3.png" alt="WarriorsNFT Home Page after checking merge">
 
@@ -117,11 +116,11 @@ Both NFTs must have already been minted and must be of the same rarity.
 
 If all NFTs in that higher rarity has already been minted, the upgrade will jump to the next rarity, ultimately upgrading it twice. (e.g., Common -> Rare (if all minted) -> Epic)
 
-5. All the burnt tokens used for merging can be seen below, as well as your balance after pressing the "Check Balance" button (minting is free but gas fee is still incurred):
+5. All the burnt tokens used for merging can be seen below, as well as your balance after pressing the "Check Balance" button (minting is free but gas fee is still charged):
 
 <img src="./screenshots/5.png" alt="WarriorsNFT Home Page when checking burnt tokens and balance">
 
-6. After all NFTs have been minted, the "Check Merge Eligibility" button will disappear, and there will be no more new Summon cards to mint. Currently, there is 18 total NFTs. Restart the network and clear the MetaMask activity data to use again.
+6. After all NFTs have been minted, the "Check Merge Eligibility" button will disappear, and there will be no more new Summon cards to mint. Currently, there are 18 total NFTs. Restart the network and clear the MetaMask activity data to use again.
 
 ## Limitations & Future Improvements :no_entry:
 1. No backend implementation: Currently, all logic is handled on-chain and through the front-end.  
@@ -133,42 +132,6 @@ If all NFTs in that higher rarity has already been minted, the upgrade will jump
 3. Lack of smart contract tests: There is only one test script that is not robust, which only tests the payment and ownership of an NFT.  
 - Can be improved by creating more smart contract test scripts that are able to test edge cases and all the different functionalities of the contract.
 
-## Process :bulb:
-1. Priorities:
-- As this is my first time creating smart contracts, and with very little experience in JavaScript frameworks for both the front-end and back-end, the initial priorities based on what I believe I was capable of were:
-  - Get the smart contract up-and-running.
-  - Create a basic React front-end to test the minting of an NFT. 
-  - Successfully mint an NFT where the image and metadata would be updated, and the state of the NFT is stored.
-  - Implement a gacha system to randomly (based on probability) mint an NFTs based on their rarity.
-  - Implement the merging/burning function that upgrades an NFT to a higher rarity.
-  - Deploy the contracts on a testnet.
-  - Add styling and additional pages to the front-end.
-  - Implement the entire back-end logic.
-- I was able to barely reach the the Add styling to the front-end stage, without adding any additional pages in the time given and with very simple styling. 
-
-2. Tool Selection:
-- As I was following Fireship's guide at the very start, which helped with getting the smart contract up-and-running, as well as creating a basic React front-end, I decided to stick with the same tools and technology from the guide as it would reduce further complexity of converting it to a different selection. Here are the tools and technologies:
-  - React 
-  - Bootstrap (Added Reactstrap later on)
-  - Hardhat
-  - OpenZeppelin (Adjusted the boilerplate later on)
-  - Alchemy (For testnet deployment)
-
-3. Challenges and Time Management:
-- Initially, I underestimated the time required to implement features as I had a clear plan. When I began to work on successfully minting the NFT, a myriad of bugs and errors were thrown.
-- A lot of time was needed to learn the necessary dependencies and setup (thanks Fireship), the Solidity syntax, and how NFTs are generated overall. As many of the beginner guides were from a few years back, it required a lot of debugging, researching, and ChatGPT (which also caused more bugs).
-- The gacha and merging logic took most of the time (2 days), with every iteration creating new errors somewhere else. I decided not to jump to back-end when faced with failures in the gacha and merging logic as I would end up with more questions, and lose my train of thought. The commitment to solving gacha and merging logic ended up being my final successful implementation in the project within the given time frame. 
-- I decided that completely implementing the Smart Contract Development with some Front-End Development would yield the most obvious results, and would be able to at least attain the title and key requirements of the project.
-
-4. Key Takeaways:
-- If given more time, I would definitely take a different approach in learning the tools and technology. Instead of following a deprecated guide, I would have slowly read through official documentations, and work on mini-projects to make sure I actually understand every line of code, and the flow of it. However, this would not be a good approach to a time-restricted project, especially with a lack of experience.
-- Regardless of the time-constraint, this project provided hands-on experience with developing and deploying an ERC721 smart contract, where I gained a ton of insight on how minting, merging, and burning tokens work, which is something fundamental to building NFT-based dApps, and even Web3 as a whole.
-- Working on the gacha mechanics made me further understand the consequences of randomizing things, and how important it is to understand what the effects are, for both the front-end and the back-end, as without proper implementation, things get wonky... 
-- Another small takeaway is realizing that most randomizations are handled off-chain, as randomizing on-chain is also difficult. When uploading my images and metadat to the IPFS via Pinata, it was the first time I noticed that the "user-minted" may have already existed, and the image itself may not be randomized at the time of minting.
-- Overall, it was very difficult, but also very fun. Truly learnt a lot, and I can't wait to work on it again. 
-
-For my complete brain-dump documentation: 
-
 ## FAQ :question:
 1. What are the rarities?
 - There are 5 total rarities, with 4 Warriors in each except the Legendary rarity where there's only 2:
@@ -179,7 +142,7 @@ For my complete brain-dump documentation:
   - Legendary (Yellow)
 
 2. What are the chances for each rarity?
-- Below are the base rarities, as more NFTs are minted, the chances for each increase:
+- Below are the base chances, as more NFTs are minted, the chances for each increases:
   - Common: 50%
   - Rare: 30%
   - Epic: 15%
